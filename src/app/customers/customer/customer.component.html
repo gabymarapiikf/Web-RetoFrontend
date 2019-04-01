@@ -1,0 +1,71 @@
+<div class="row">
+  <div class="col-md-12">
+    <h5 class="title">Nuevo</h5>
+  </div>
+  <div class="col-md-12">
+    <form (submit)="validateCustomerInformation()" #customerInformation="ngForm">
+      <div class="row">
+
+          <!-- <div class="col-sm-12 col-lg-6 mb-2 pr-lg-3">
+              <label class="text-custom-green small mb-0" for="inputName">Nombres *</label>
+              <input [(ngModel)]="formData.name" name="inputName" type="text" id="inputName" #inputName="ngModel"
+                placeholder="ej. Carlos" minlength="3" maxlength="40" class="form-control"
+                pattern="[a-zA-ZÀ-ÿ\u00f1\u00d1\s]*" required>
+              <div class="form-control-error">
+                <small *ngIf="inputName.invalid && inputName.touched" class="text-danger small-xs">*Ingrese nombres
+                  válido</small>
+              </div>
+            </div>
+
+            <div class="col-sm-12 col-lg-6 mb-2 pl-lg-3">
+              <label class="text-custom-green small mb-0" for="inputLastName">Apellidos *</label>
+              <input [(ngModel)]="user.lastName" name="inputLastName" type="text" #inputLastName="ngModel"
+                id="inputLastName" placeholder="ej. Benavides" pattern="[a-zA-ZÀ-ÿ\u00f1\u00d1\s]*" minlength="3"
+                maxlength="40" class="form-control" required>
+              <small *ngIf="inputLastName.invalid && inputLastName.touched" class="text-danger small-xs">*Ingrese
+                apellidos válido</small>
+            </div>
+
+            <div class="col-sm-12 col-lg-6 mb-2 pr-lg-3">
+              <label class="text-custom-green small mb-0" for="inputUserID">Número de DNI/CE *</label>
+              <input [(ngModel)]="user.dni" name="inputUserID" type="text" minlength="8" maxlength="12"
+                class="form-control" #inputUserID="ngModel" placeholder="ej. 42899012" pattern="[0-9]*" required>
+              <div class="form-control-error">
+                <small *ngIf="inputUserID.invalid && inputUserID.touched" class="text-danger small-xs">*Ingrese DNI
+                  (8) o CE (9-12) dígitos</small>
+              </div>
+            </div> -->
+
+        <div class="col-md-12">
+          <mat-form-field class="w-100">
+            <input matInput placeholder="Nombres">
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-12">
+          <mat-form-field class="w-100">
+            <input matInput placeholder="Apellidos">
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-12">
+          <mat-form-field class="w-100">
+            <input matInput placeholder="Edad">
+          </mat-form-field>
+        </div>
+
+        <!-- <div class="col-md-12">
+                              <mat-form-field>
+                                <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                              </mat-form-field>
+                            </div> -->
+
+        <div class="col-md-12 text-right">
+          <button mat-button class="main-btn mt-3" type="submit">Agregar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
