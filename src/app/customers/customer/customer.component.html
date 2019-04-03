@@ -4,11 +4,11 @@
   </div>
   <div class="col-md-12 mb-4">
     <form #customerInformation="ngForm" (submit)="validateCustomerInformation(customerInformation)">
-      <div class="row">
+      <div class="form-row">
 
         <div class="col-md-12 mb-4">
           <label class="small mb-0" for="name">Nombres *</label>
-          <input [(ngModel)]="service.name" name="name" type="text" id="name" #name="ngModel" placeholder="ej. Pili" minlength="3"
+          <input [(ngModel)]="customer.name" name="name" type="text" id="name" #name="ngModel" placeholder="ej. Pili" minlength="3"
             maxlength="40" class="form-control" pattern="[a-zA-ZÀ-ÿ\u00f1\u00d1\s]*" required>
           <div class="form-control-error">
             <small *ngIf="name.invalid && name.touched" class="text-danger small-xs">*Ingrese nombres válido
@@ -18,14 +18,14 @@
 
         <div class="col-md-12 mb-4">
           <label class=" small mb-0" for="lastName">Apellidos *</label>
-          <input [(ngModel)]="service.lastName" name="lastName" type="text" #lastName="ngModel" id="lastName" placeholder="ej. Benavides"
+          <input [(ngModel)]="customer.lastname" name="lastName" type="text" #lastName="ngModel" id="lastName" placeholder="ej. Benavides"
             pattern="[a-zA-ZÀ-ÿ\u00f1\u00d1\s]*" minlength="3" maxlength="40" class="form-control" required>
           <small *ngIf="lastName.invalid && lastName.touched" class="text-danger small-xs">*Ingrese apellidos válido</small>
         </div>
 
         <div class="col-md-12 mb-4">
           <label class=" small mb-0" for="age">Edad *</label>
-          <input [(ngModel)]="service.age" name="age" type="number" class="form-control" #age="ngModel" placeholder="ej. 22" required>
+          <input [(ngModel)]="customer.age" name="age" type="number" class="form-control" #age="ngModel" placeholder="ej. 22" required>
           <div class="form-control-error">
             <small *ngIf="age.invalid && age.touched" class="text-danger small-xs">*Ingrese edad</small>
           </div>
@@ -34,7 +34,7 @@
         <div class="col-md-12 mb-4">
           <label class=" small mb-0" for="birthdate">Fecha de nacimiento *</label>
           <div class="d-flex">
-            <input [(ngModel)]="service.birthdate" name="birthdate" type="text" #birthdate="ngModel"  matInput [matDatepicker]="picker" placeholder="ej. 10/04/1997"
+            <input [(ngModel)]="customer.birthdate" name="birthdate" type="text" #birthdate="ngModel"  matInput [matDatepicker]="picker" placeholder="ej. 10/04/1997"
               class="form-control" required>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>

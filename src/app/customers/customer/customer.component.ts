@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CustomerService } from 'src/app/shared/customer.service';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormGroup } from '@angular/forms';
 import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
@@ -9,11 +9,21 @@ import { AngularFirestore } from '@angular/fire/firestore';
   styleUrls: ['./customer.component.css']
 })
 export class CustomerComponent implements OnInit {
+  @Output() ngSubmit = new EventEmitter();
+  public customer = {
+    id: null,
+    name: null,
+    lastname: null,
+    age: null,
+    birthdate: null,
+  };
 
   constructor(
     private service: CustomerService,
     private firestore: AngularFirestore
   ) { }
+
+
   ngOnInit() {
     this.resetForm();
   }
@@ -21,18 +31,11 @@ export class CustomerComponent implements OnInit {
   resetForm(form?: NgForm) {
     if (form) {
       form.resetForm();
-      this.service.formData = {
-        id: null,
-        name: null,
-        lastname: null,
-        age: null,
-        birthdate: null,
-      }
     }
   }
 
   validateCustomerInformation(form: NgForm) {
-    let data = form.value;
+    const data = form.value;
     this.firestore.collection('customers').add(data);
     this.resetForm(form);
   }
