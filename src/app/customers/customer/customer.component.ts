@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CustomerService } from 'src/app/shared/customer.service'
+import { CustomerService } from 'src/app/shared/customer.service';
 import { NgForm } from '@angular/forms';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-customer',
@@ -10,25 +11,30 @@ import { NgForm } from '@angular/forms';
 export class CustomerComponent implements OnInit {
 
   constructor(
-    private service: CustomerService
+    private service: CustomerService,
+    private firestore: AngularFirestore
   ) { }
   ngOnInit() {
     this.resetForm();
   }
 
   resetForm(form?: NgForm) {
-    form.resetForm();
-    this.service.formData = {
-      id: null,
-      name: null,
-      lastname: null,
-      age: null,
-      birthdate: null,
+    if (form) {
+      form.resetForm();
+      this.service.formData = {
+        id: null,
+        name: null,
+        lastname: null,
+        age: null,
+        birthdate: null,
+      }
     }
   }
 
-  validateCustomerInformation() {
-
+  validateCustomerInformation(form: NgForm) {
+    let data = form.value;
+    this.firestore.collection('customers').add(data);
+    this.resetForm(form);
   }
 
 }

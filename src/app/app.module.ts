@@ -4,12 +4,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
-import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule, MatDatepickerModule } from '@angular/material';
 import { MatTableModule } from '@angular/material/table';
 
 import { AppComponent } from './app.component';
@@ -27,19 +27,19 @@ import { CustomerListComponent } from './customers/customer-list/customer-list.c
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule,
+    AngularFirestoreModule,
     MatFormFieldModule,
     BrowserAnimationsModule,
-    MatInputModule,
     FormsModule,
     ReactiveFormsModule,
     MatButtonModule,
     MatDatepickerModule,
     MatTableModule,
+    MatNativeDateModule
   ],
   entryComponents: [
   ],
-  providers: [],
+  providers: [MatDatepickerModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,20 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-];
+import { CustomerService } from 'src/app/shared/customer.service';
+import { Customer } from 'src/app/shared/customer.model';
 
 @Component({
   selector: 'app-customer-list',
@@ -22,11 +8,31 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./customer-list.component.css']
 })
 export class CustomerListComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
-  constructor() { }
+  list: Customer[];
+  displayedColumns: string[] = ['id', 'name', 'lastname', 'age', 'birthdate'];
+
+  constructor(
+    private service: CustomerService,
+  ) { }
 
   ngOnInit() {
+    this.service.getCustomers().subscribe(actionArray => {
+      this.list = actionArray.map((item, index) => {
+        return {
+          id: String(index + 1),
+          ...item.payload.doc.data(),
+        } as Customer;
+      })
+    })
+  }
+
+  calculateImp(y) {
+    return +y % 2 === 0 ? false : true;
+  }
+
+  convertFormat(a){
+    const getDate = new Date(a.seconds * 1000);
+    return getDate.toLocaleDateString();
   }
 
 }
